@@ -1,5 +1,6 @@
 {
     "baseUrl":"https://fonts.google.com/",
     "viewportHeight":768,
-    "viewportWidth":1366
+    "viewportWidth":1366,
+    "$schema": "https://on.cypress.io/cypress.schema.json"
 }
