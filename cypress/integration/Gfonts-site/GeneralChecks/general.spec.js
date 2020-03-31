@@ -18,16 +18,19 @@ describe('Page versions and general checks', () => {
     it('Should check the page title and protocol used', () => {
         site.checkPageTitle('Google Fonts')
         site.checkPageProtocol('https:')
+        site.checkLogoVisibility()
     })
 
     it('Should navigate to About page', () => {
         site.navigateToAboutPage()
         site.checkPageTitle('About - Google Fonts')
+        site.checkLogoVisibility()
     })
 
     it('Should navigate to Featured page', () => {
         site.navigateToFeaturedPage()
         site.checkPageTitle('Featured Collections - Google Fonts')
+        site.checkLogoVisibility()
     })
 
     it('Should navigate to Articles page', () => {

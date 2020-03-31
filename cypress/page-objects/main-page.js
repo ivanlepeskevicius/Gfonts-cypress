@@ -62,6 +62,10 @@ export class BrowseFontsPage {
     navigateToAboutPage() {
         cy.get(':nth-child(5) > .header-nav-link').click()
     }
+
+    checkLogoVisibility() {
+        cy.get('.gf-header-content > .lockup > .lockup-brand').should('contain.text', 'Fonts')
+    }
     
     //End navigation group
 
