@@ -1,18 +1,19 @@
 export class BrowseFontsPage {
     //Navigation
-    navigateToOldSite() {
-        cy.visit('/')
-    }
 
     navigateToTestSite() {
         cy.visit('/')
     }
 
-    navigateToNewSite() {
-        cy.get(':nth-child(1) > .header-nav-link').click()
+    checkPageTitle(title) {
+        cy.title().should('eq',title)
     }
 
-    returnToClassicSite() {
+    checkPageProtocol(protocol) {
+        cy.location('protocol').should('eq',protocol)
+    }
+
+    navigateToOtherVersion() {
         cy.get(':nth-child(1) > .header-nav-link').click()
     }
   
@@ -33,7 +34,29 @@ export class BrowseFontsPage {
     }
 
     navigateToArticlesPage() {
-        cy.get(':nth-child(4) > .header-nav-link').click()
+        cy.visit('https://design.google/library/google-fonts/?utm_source=Google&utm_medium=Fonts&utm_campaign=Article%20Tab')
+    }
+
+    checkLinkToArticlesPage() {
+        cy.get(':nth-child(4) > .header-nav-link')
+        .should('have.prop', 'href', 'https://design.google/library/google-fonts/?utm_source=Google&utm_medium=Fonts&utm_campaign=Article%20Tab')
+        .then(function ($a) {
+            const href = $a.prop('href')
+    
+            // request the contents of the Article page
+            cy.request(href)
+    
+            // drill into the response body
+            .its('body')
+    
+            // Because we don't control this site - we don't feel
+            // comfortable making any kind of assertions
+            // on the response body other than google having a closing <html> tag.
+            //
+            // You will notice that this test still goes much
+            // slower than the others and it requires internet access.
+            .should('include', '</html>')
+          })
     }
 
     navigateToAboutPage() {
