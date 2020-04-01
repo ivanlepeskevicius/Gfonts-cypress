@@ -71,10 +71,6 @@ export class BrowseFontsPage {
         cy.get('.font-preview-text').should('have.text', txtExample)
     }
 
-    //size selector by listed values
-
-    //size selector by draging 
-
     checkDefaultResetBtnStatus() {
         cy.get('[aria-label="Reset"]')
             .should('be.visible')
@@ -159,6 +155,6 @@ export class BrowseFontsPage {
         cy.get('.close-icon-model').last().click()
     }
 
-    //End Categories filter
+    //End Categories' filter
 
 }
