@@ -8,28 +8,31 @@ describe('Page versions and general checks', () => {
     })
     
     it('Should navigate between the old and new versions of the Google fonts page', () => {
-        site.validateOldGFontsLink()
-        site.navigateToOtherVersion() //navigates to the old version
-        site.validateNewGFontsLink()
-        site.navigateToOtherVersion() //navigates to the new version again
-        site.validateOldGFontsLink()
+        site.navigateTo('Return to classic site')
+        site.checkURL('https://fonts.google.com/')
+        site.checkPageTitle('Google Fonts')
+        site.navigateTo('Check out the new Google Fonts')
+        site.checkURL('https://fonts.google.com/')
     })
 
     it('Should check the page title and protocol used', () => {
         site.checkPageTitle('Google Fonts')
         site.checkPageProtocol('https:')
+        site.checkURL('https://fonts.google.com/')
         site.checkLogoVisibility()
     })
 
     it('Should navigate to About page', () => {
-        site.navigateToAboutPage()
+        site.navigateTo('About')
         site.checkPageTitle('About - Google Fonts')
+        site.checkURL('https://fonts.google.com/about')
         site.checkLogoVisibility()
     })
 
     it('Should navigate to Featured page', () => {
-        site.navigateToFeaturedPage()
+        site.navigateTo('Featured')
         site.checkPageTitle('Featured Collections - Google Fonts')
+        site.checkURL('https://fonts.google.com/featured')
         site.checkLogoVisibility()
     })
 
