@@ -68,7 +68,7 @@ describe('Browse Fonts - Search functionality', () => {
         browsePage.checkFirstResult('Roboto') 
     })
 
-    it.only('Should be able to use the "Show only variable fonts"', () => {
+    it('Should be able to use the "Show only variable fonts"', () => {
         browsePage.checkVariableFontsFilterDefault()
         browsePage.totalResultsDisplayed('34')
         browsePage.applyVariableFontsFilter()

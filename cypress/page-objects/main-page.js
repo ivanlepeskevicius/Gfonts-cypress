@@ -32,22 +32,10 @@ export class BrowseFontsPage {
     }
 
     checkLinkToArticlesPage() {
-        cy.get(':nth-child(4) > .header-nav-link')
-            .should('have.prop', 'href', 'https://design.google/library/google-fonts/?utm_source=Google&utm_medium=Fonts&utm_campaign=Article%20Tab')
-            .then(function ($a) {
-                const href = $a.prop('href')
-
-                // request the contents of the Article page
-                cy.request(href)
-
-                    // drill into the response body
-                    .its('body')
-
-                    // Because we don't control this site - we don't feel
-                    // comfortable making any kind of assertions
-                    // on the response body other than google having a closing <html> tag.
-                    .should('include', '</html>')
-            })
+        cy.validateLinkToExternalSite(
+            'Articles',
+            'https://design.google/library/google-fonts/?utm_source=Google&utm_medium=Fonts&utm_campaign=Article%20Tab'
+            )
     }
 
     //End navigation group
@@ -158,6 +146,15 @@ export class BrowseFontsPage {
     //End Categories' filter
 
     //Variable fonts
+    checkLearnMoreTooltip() {
+        cy.contains('Google Fonts now supports variable fonts.').should('be.visible')
+        cy.validateLinkToExternalSite(
+            'Learn more',
+            'https://developers.google.com/web/fundamentals/design-and-ux/typography/variable-fonts'
+            )
+        cy.get('[ng-click="vfFilterCallout.closeCallout()"]').click()
+    }
+
     checkVariableFontsFilterDefault() {
         cy.contains('Show only variable fonts').should('be.visible')
         cy.get('[aria-label="Is variable fonts filter active"]')

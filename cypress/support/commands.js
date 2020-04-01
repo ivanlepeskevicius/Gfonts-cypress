@@ -23,3 +23,22 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("validateLinkToExternalSite", (locator, url) => {
+    cy.contains(locator)
+            .should('have.prop', 'href', url)
+            .then(function ($a) {
+                const href = $a.prop('href')
+
+                // request the contents of the Article page
+                cy.request(href)
+
+                    // drill into the response body
+                    .its('body')
+
+                    // Because we don't control this site - we don't feel
+                    // comfortable making any kind of assertions
+                    // on the response body other than google having a closing <html> tag.
+                    .should('include', '</html>')
+            })
+})

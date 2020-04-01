@@ -20,6 +20,7 @@ describe('Page versions and general checks', () => {
         site.checkPageProtocol('https:')
         site.checkURL('https://fonts.google.com/')
         site.checkLogoVisibility()
+        site.checkLearnMoreTooltip()
     })
 
     it('Should navigate to About page', () => {
