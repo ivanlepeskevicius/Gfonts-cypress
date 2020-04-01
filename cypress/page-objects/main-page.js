@@ -152,14 +152,10 @@ export class BrowseFontsPage {
     }
 
     unCheckAllCateogories() {
+        cy.visit('/?category=Serif') //If I try to go to '/?category=' it throws undefined and goes to '/'
         cy.get('[aria-label="Open category filter interactions menu"]').first().click()
-        //Deselect all categories
+        //Manually deselect the only category
         cy.get('[aria-label="Serif"]').click()
-        cy.get('[aria-label="Sans Serif"]').click()
-        cy.get('[aria-label="Display"]').click()
-        cy.get('[aria-label="Handwriting"]').click()
-        cy.get('[aria-label="Monospace"]').click()
-        //closes the cateogries' selector
         cy.get('.close-icon-model').last().click()
     }
 

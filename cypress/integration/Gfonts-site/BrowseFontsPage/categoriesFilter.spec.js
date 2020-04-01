@@ -12,13 +12,7 @@ describe('Browse Fonts - Filter by categories functionality', () => {
         browsePage.checkFirstResult('Roboto')
     })
 
-    it('Should be able to uncheck all categories', () => {
-        browsePage.unCheckAllCateogories()
-        browsePage.showsCatalogError()
-        browsePage.checkCategoryFilterText('No categories selected')
-    })
-
-    it('Should clear the selected filters after an error', () => {
+    it('Should be able to uncheck all categories and reset', () => {
         browsePage.unCheckAllCateogories()
         browsePage.showsCatalogError()
         browsePage.clearResultError()
