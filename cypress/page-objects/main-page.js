@@ -18,7 +18,7 @@ export class BrowseFontsPage {
     }
 
     checkLogoVisibility() {
-        cy.get('.gf-header-content > .lockup > .lockup-brand')
+        cy.get('.lockup-brand').first()
             .should('contain.text', 'Fonts')
             .and('be.visible')
     }
@@ -157,4 +157,17 @@ export class BrowseFontsPage {
 
     //End Categories' filter
 
+    //Variable fonts
+    checkVariableFontsFilterDefault() {
+        cy.contains('Show only variable fonts').should('be.visible')
+        cy.get('[aria-label="Is variable fonts filter active"]')
+            .should('be.visible')
+            .and('not.be.checked')
+        cy.get('[md-labeled-by-tooltip="md-tooltip-2"]').click({ force: true })
+        cy.contains('You can use these fonts to create custom styles').should('be.visible')
+    }
+
+    applyVariableFontsFilter() {
+        cy.get('[aria-label="Is variable fonts filter active"]').click()
+    }
 }
